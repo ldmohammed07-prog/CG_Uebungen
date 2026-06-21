@@ -1,0 +1,4 @@
+*.bz2
+*.tar
+models/
+render-data/models/
