@@ -2,3 +2,4 @@
 *.tar
 models/
 render-data/models/
+.DS_Store
