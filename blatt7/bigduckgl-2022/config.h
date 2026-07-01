@@ -2,7 +2,7 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* foo */
-#define GLEW_INCLUDE_PATH ""
+#define GLEW_INCLUDE_PATH "/opt/homebrew/Cellar/glew/2.3.1/include"
 
 /* define if the compiler supports basic C++11 syntax */
 #define HAVE_CXX11 1

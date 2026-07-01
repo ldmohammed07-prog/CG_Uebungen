@@ -5,16 +5,16 @@
 # It is necessary for linking the library.
 
 # The name that we can dlopen(3).
-dlname='libbigduckgl.0.dylib'
+dlname=''
 
 # Names of this library.
-library_names='libbigduckgl.0.0.0.dylib libbigduckgl.0.dylib libbigduckgl.dylib'
+library_names=''
 
 # The name of the static archive.
 old_library='libbigduckgl.a'
 
 # Linker flags that cannot go in dependency_libs.
-inherited_linker_flags=' '
+inherited_linker_flags='  -framework OpenGL'
 
 # Libraries that this one depends upon.
 dependency_libs=' -L/opt/homebrew/opt/glfw/lib -L/opt/homebrew/opt/glew/lib -L/opt/homebrew/opt/assimp/lib -lassimp /usr/local/lib/libimgui.la -lglfw -lGLEW'

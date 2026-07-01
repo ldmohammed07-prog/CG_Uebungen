@@ -1,6 +1,6 @@
 #! /bin/sh
 # Generated automatically by config.status (bigduckgl) 2022
-# Libtool was configured on host MacBookPro:
+# Libtool was configured on host Galaxy-Tab-S3:
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 
 # Provide generalized library-building support services.
@@ -42,7 +42,7 @@ macro_version=2.4.6
 macro_revision=2.4.6
 
 # Whether or not to build shared libraries.
-build_libtool_libs=yes
+build_libtool_libs=no
 
 # Whether or not to build static libraries.
 build_old_libs=yes
@@ -165,7 +165,7 @@ lock_old_archive_extraction=yes
 LTCC="gcc"
 
 # LTCC compiler flags.
-LTCFLAGS="-g -O2"
+LTCFLAGS=""
 
 # Take the output of nm and produce a listing of raw symbols and C names.
 global_symbol_pipe="sed -n -e 's/^.*[	 ]\\([ABCDGIRSTW][ABCDGIRSTW]*\\)[	 ][	 ]*_\\([_A-Za-z][_A-Za-z0-9]*\\)\$/\\1 _\\2 \\2/p' | sed '/ __gnu_lto/d'"
@@ -282,7 +282,7 @@ finish_eval=""
 hardcode_into_libs=no
 
 # Compile-time system search path for libraries.
-sys_lib_search_path_spec="/Library/Developer/CommandLineTools/usr/lib/clang/21  /usr/local/lib"
+sys_lib_search_path_spec="/lib /usr/lib /usr/local/lib /usr/local/lib"
 
 # Detected run-time system search path for libraries.
 sys_lib_dlsearch_path_spec="/usr/local/lib /lib /usr/lib"
@@ -305,11 +305,11 @@ striplib="strip -x"
 
 
 # The linker used to build libraries.
-LD="/Library/Developer/CommandLineTools/usr/bin/ld"
+LD="/usr/bin/ld"
 
 # How to create reloadable object files.
 reload_flag=" -r"
-reload_cmds="\$LTCC \$LTCFLAGS -nostdlib \$wl-r -o \$output\$reload_objs"
+reload_cmds="\$LD\$reload_flag -o \$output\$reload_objs"
 
 # Commands used to build an old-style archive.
 old_archive_cmds="\$AR \$AR_FLAGS \$oldlib\$oldobjs~\$RANLIB \$tool_oldlib"
@@ -318,22 +318,22 @@ old_archive_cmds="\$AR \$AR_FLAGS \$oldlib\$oldobjs~\$RANLIB \$tool_oldlib"
 CC="gcc"
 
 # Is the compiler the GNU compiler?
-with_gcc=yes
+with_gcc=
 
 # Compiler flag to turn off builtin functions.
-no_builtin_flag=" -fno-builtin -fno-rtti -fno-exceptions"
+no_builtin_flag=""
 
 # Additional compiler flags for building library objects.
-pic_flag=" -fno-common -DPIC"
+pic_flag=""
 
 # How to pass a linker flag through the compiler.
-wl="-Wl,"
+wl=""
 
 # Compiler flag to prevent dynamic linking.
 link_static_flag=""
 
 # Does compiler simultaneously support -c and -o options?
-compiler_c_o="yes"
+compiler_c_o="no"
 
 # Whether or not to add -lc for building shared libraries.
 build_libtool_need_lc=no
@@ -357,13 +357,13 @@ old_archive_from_new_cmds=""
 old_archive_from_expsyms_cmds=""
 
 # Commands used to build a shared archive.
-archive_cmds="\$CC -dynamiclib \$allow_undefined_flag -o \$lib \$libobjs \$deplibs \$compiler_flags -install_name \$rpath/\$soname \$verstring "
-archive_expsym_cmds="sed 's|^|_|' < \$export_symbols > \$output_objdir/\$libname-symbols.expsym~\$CC -dynamiclib \$allow_undefined_flag -o \$lib \$libobjs \$deplibs \$compiler_flags -install_name \$rpath/\$soname \$verstring  \$wl-exported_symbols_list,\$output_objdir/\$libname-symbols.expsym"
+archive_cmds=""
+archive_expsym_cmds=""
 
 # Commands used to build a loadable module if different from building
 # a shared archive.
-module_cmds="\$CC \$allow_undefined_flag -o \$lib -bundle \$libobjs \$deplibs \$compiler_flags"
-module_expsym_cmds="sed -e 's|^|_|' < \$export_symbols > \$output_objdir/\$libname-symbols.expsym~\$CC \$allow_undefined_flag -o \$lib -bundle \$libobjs \$deplibs \$compiler_flags \$wl-exported_symbols_list,\$output_objdir/\$libname-symbols.expsym"
+module_cmds=""
+module_expsym_cmds=""
 
 # Whether we are building with GNU ld or not.
 with_gnu_ld="no"
@@ -11721,11 +11721,11 @@ build_old_libs=`case $build_libtool_libs in yes) echo no;; *) echo yes;; esac`
 # ### BEGIN LIBTOOL TAG CONFIG: CXX
 
 # The linker used to build libraries.
-LD="/Library/Developer/CommandLineTools/usr/bin/ld"
+LD="/usr/bin/ld"
 
 # How to create reloadable object files.
 reload_flag=" -r"
-reload_cmds="\$LTCC \$LTCFLAGS -nostdlib \$wl-r -o \$output\$reload_objs"
+reload_cmds="\$LD\$reload_flag -o \$output\$reload_objs"
 
 # Commands used to build an old-style archive.
 old_archive_cmds="\$AR \$AR_FLAGS \$oldlib\$oldobjs~\$RANLIB \$tool_oldlib"

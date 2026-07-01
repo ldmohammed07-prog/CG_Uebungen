@@ -186,6 +186,7 @@ int main(int argc, char** argv) {
 			shader_plain_color->uniform("proj", Camera::current()->proj);
 			// TODO
 			// Teilaufgabe 1
+			glUniform4fv(glGetUniformLocation(shader_plain_color->id, "cols"), 100, glm::value_ptr(cols[0]));
 			for (auto &de : *scene) {
 				de->material->bind(shader_plain_color);
 				de->draw(glm::mat4(1));
