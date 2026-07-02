@@ -1,12 +1,14 @@
 #version 150
 
-// TODO 
-// Teilaufgabe 2
-// Uniform aus Framework
+// Teilaufgabe 1.2
+// Das Framework (Material::bind) setzt die diffuse Materialfarbe als vec4-Uniform "k_diff".
+// Deshalb muss sie hier auch als vec4 deklariert werden (eine vec3-Deklaration passt nicht
+// zu glUniform4f und die Uniform bliebe ungesetzt -> schwarze Oberflaeche).
+uniform vec4 k_diff;
+
 out vec4 out_col;
 
 void main() {
-	// TODO 
-	// Teilaufgabe 2
-	//out_col = vec4(0.6,0.1,0.1,1);
+	// diffuse Materialfarbe auf allen Oberflaechen anzeigen
+	out_col = vec4(k_diff.rgb, 1.0);
 }
