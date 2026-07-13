@@ -123,6 +123,22 @@ int main(int argc, char** argv) {
 		static glm::vec3 pointlight_pos = glm::vec3(75,500,500);
 		static glm::vec3 pointlight_col = glm::vec3(1.0,0.58,0.16);
 		static float     pointlight_scale = 1.5f;
+		// Aufgabe 1.4: mehrere Punktlichter
+static glm::vec3 pt_positions[5] = {
+    glm::vec3(0, 300, 0),
+    glm::vec3(200, 300, 0),
+    glm::vec3(-200, 300, 0),
+    glm::vec3(0, 300, 200),
+    glm::vec3(0, 300, -200)
+};
+static glm::vec3 pt_colors[5] = {
+    glm::vec3(1.0, 0.0, 0.0),
+    glm::vec3(0.0, 1.0, 0.0),
+    glm::vec3(0.0, 0.0, 1.0),
+    glm::vec3(1.0, 1.0, 0.0),
+    glm::vec3(0.0, 1.0, 1.0)
+};
+static float pt_scales[5] = {2.0, 2.0, 2.0, 2.0, 2.0};
 		ImGui::Separator();
 		if (ImGui::SliderFloat3("Directional Light", &dirlight_dir.x, -1, 1))
 			if (dirlight_dir == glm::vec3(0,0,0))
@@ -141,6 +157,18 @@ int main(int argc, char** argv) {
 		update_timer.start();
         static float pi = M_PI;
 		float dt = Context::frame_time() / 1000.0f; //milliseconds
+// aufgabe 1.4 
+static float time = 0.0f;
+time += dt;
+
+// Lichter bewegen sich auf Kreisbahnen
+pt_positions[0] = glm::vec3(300 * cos(time), 300, 300 * sin(time));
+pt_positions[1] = glm::vec3(300 * cos(time + 2*pi/5), 300, 300 * sin(time + 2*pi/5));
+pt_positions[2] = glm::vec3(300 * cos(time + 4*pi/5), 300, 300 * sin(time + 4*pi/5));
+pt_positions[3] = glm::vec3(300 * cos(time + 6*pi/5), 300, 300 * sin(time + 6*pi/5));
+pt_positions[4] = glm::vec3(300 * cos(time + 8*pi/5), 300, 300 * sin(time + 8*pi/5));
+/////
+		
 #ifdef CG_KART
         if (kart.attached_camera) {
 			    if (Context::key_pressed(GLFW_KEY_SPACE))
@@ -218,6 +246,15 @@ int main(int argc, char** argv) {
 				shader->uniform("dirlight_dir", dirlight_dir);
 				shader->uniform("dirlight_col", glm::pow(dirlight_col, glm::vec3(2.2f)));
 				shader->uniform("dirlight_scale", dirlight_scale);
+				// Aufgabe 1.4: mehrere Punktlichter
+				if (active_mode == PhongLighting) {
+    GLint loc_pos = glGetUniformLocation(shader_lighting->id, "pt_positions");
+    glUniform3fv(loc_pos, 5, glm::value_ptr(pt_positions[0]));
+    GLint loc_col = glGetUniformLocation(shader_lighting->id, "pt_colors");
+    glUniform3fv(loc_col, 5, glm::value_ptr(pt_colors[0]));
+    GLint loc_sca = glGetUniformLocation(shader_lighting->id, "pt_scales");
+    glUniform1fv(loc_sca, 5, pt_scales);
+}
 				de->draw(glm::mat4(1));
 				de->unbind();
 			}

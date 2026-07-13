@@ -26,6 +26,10 @@ uniform vec4 k_diff;
 uniform vec4 k_spec;
 uniform vec4 k_amb;
 
+// Mehrere Punktlichter
+uniform vec3 pt_positions[5];
+uniform vec3 pt_colors[5];
+uniform float pt_scales[5];
 void main() {
 	// TODO
 	// Teilaufgabe 3
@@ -46,17 +50,32 @@ void main() {
 	vec3  dir_spec = k_spec.rgb * dirlight_col * dirlight_scale * dir_s;
 
 	// --- Point Light (mit Distance-Falloff) ---
-	vec3  to_light = pointlight_pos - pos_ws;   // Vektor vom Fragment zum Licht
-	vec3  Lp       = normalize(to_light);
-	float dist     = length(to_light);
-	float atten    = 1.0 / (1.0 + 0.000002 * dist * dist);   // Falloff, frei waehlbar
+	//vec3  to_light = pointlight_pos - pos_ws;   // Vektor vom Fragment zum Licht
+	//vec3  Lp       = normalize(to_light);
+	//float dist     = length(to_light);
+	//float atten    = 1.0 / (1.0 + 0.000002 * dist * dist);   // Falloff, frei waehlbar
 	// Schritt 2: Diffuse
-	vec3  pt_diff  = k_diff.rgb * pointlight_col * pointlight_scale * atten * max(dot(N, Lp), 0.0);
+	//vec3  pt_diff  = k_diff.rgb * pointlight_col * pointlight_scale * atten * max(dot(N, Lp), 0.0);
 	// Schritt 3: Specular
-	vec3  Rp       = reflect(-Lp, N);
-	float pt_s     = (dot(N, Lp) > 0.0) ? pow(max(dot(Rp, V), 0.0), shininess) : 0.0;
-	vec3  pt_spec  = k_spec.rgb * pointlight_col * pointlight_scale * atten * pt_s;
+	//vec3  Rp       = reflect(-Lp, N);
+	//float pt_s     = (dot(N, Lp) > 0.0) ? pow(max(dot(Rp, V), 0.0), shininess) : 0.0;
+	//vec3  pt_spec  = k_spec.rgb * pointlight_col * pointlight_scale * atten * pt_s;
 
+	//Aufgabe 1.4------------
+	// --- Multiple Point Lights --- 
+vec3 pt_diff = vec3(0.0);
+vec3 pt_spec = vec3(0.0);
+for (int i = 0; i < 5; i++) {
+    vec3  to_light = pt_positions[i] - pos_ws;
+    vec3  Lp       = normalize(to_light);
+    float dist     = length(to_light);
+    float atten    = 1.0 / (1.0 + 0.000002 * dist * dist);
+    pt_diff += k_diff.rgb * pt_colors[i] * pt_scales[i] * atten * max(dot(N, Lp), 0.0);
+    vec3  Rp   = reflect(-Lp, N);
+    float pt_s = (dot(N, Lp) > 0.0) ? pow(max(dot(Rp, V), 0.0), shininess) : 0.0;
+    pt_spec += k_spec.rgb * pt_colors[i] * pt_scales[i] * atten * pt_s;
+}
+	//------------
 	// Schritt 4: Ambient (konstante Grundhelligkeit gegen tiefschwarze Schatten)
 	vec3 ambient = k_amb.rgb;
 
